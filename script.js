@@ -57,15 +57,15 @@ convert2 = Number(numString2);
 convert3 = Number(numDecimalString);
 convert4 = Number(nonNumString);
 
-checkNaN1 = Number.isNaN(numString1);
-checkNaN2 = Number.isNaN(numString2);
-checkNaN3 = Number.isNaN(numDecimalString);
-checkNaN4 = Number.isNaN(nonNumString);
+checkNaN1 = Number.isNaN(convert1);
+checkNaN2 = Number.isNaN(convert2);
+checkNaN3 = Number.isNaN(convert3);
+checkNaN4 = Number.isNaN(convert4);
 
-checkInt1 = Number.isInteger(numString1);
-checkInt2 = Number.isInteger(numString2);
-checkInt3 = Number.isInteger(numDecimalString);
-checkInt4 = Number.isInteger(nonNumString);
+checkInt1 = Number.isInteger(convert1);
+checkInt2 = Number.isInteger(convert2);
+checkInt3 = Number.isInteger(convert3);
+checkInt4 = Number.isInteger(convert4);
 
 // TODO:
 // 3. For EACH value, create a sentence showing:
@@ -92,6 +92,24 @@ combinedResults = result1 + "<br>" + result2 + "<br>" + result3 + "<br>" + resul
 //    id="numberConversionOutput"
 document.getElementById("numberConversionOutput").innerHTML = combinedResults;
 
+//conditional msg for isInteger()
+intCheckArray = [numString1, numString2, numDecimalString, nonNumString];
+
+let intMsg = "";
+
+for (let i = 0; i < intCheckArray.length; i++) {
+    let convertedValue = Number(intCheckArray[i]);
+    if (Number.isInteger(convertedValue)) {
+        intMsg += "The value " + "\"" + intCheckArray[i] + "\"" + " is an integer."
+    }
+    else {
+        intMsg += "The value " + "\"" + intCheckArray[i] + "\"" + " is not an integer."
+    }
+    intMsg += "<br>";
+}
+
+document.getElementById("intConditionOutput").innerHTML = intMsg;
+
 // ==========================
 // Part 3: Math & Formatting
 // ==========================
@@ -104,14 +122,43 @@ document.getElementById("numberConversionOutput").innerHTML = combinedResults;
 //    - at least one other operation (subtract, multiply, or divide)
 //
 // 3. Use at least ONE of the following:
-//    - toFixed()
-//    - toLocaleString()
-//    - Number.parseInt()
-//    - Number.parseFloat()
+//    - toFixed() -> rounds to a specific number of decimal places
+//    - toLocaleString() -> formats a number using locale-specific conventions
+//    - Number.parseInt() -> parses a string and returns an integer
+//    - Number.parseFloat() -> parses a string and returns a floating-point number
 //
 // 4. Build a string showing your results
 //
 // 5. Display the results inside the element with id="mathOutput"
+
+var tuition = 4206.78;
+var grantUSG = 2979.12;
+var grantPell = 3500;
+
+totalGrants = (grantUSG + grantPell).toFixed(2);
+outOfPocketExpense = (tuition - totalGrants).toLocaleString('en-US');
+
+combinedResults = "Tuition: " + tuition + "<br>" + "Total Grants: " + totalGrants + "<br>" + "Out of Pocket Expense: " + outOfPocketExpense;
+document.getElementById("mathOutput").innerHTML = combinedResults;
+
+let extraMessage = "";
+
+if (totalGrants > tuition) {
+    extraMessage = "You don't owe anything. You will receiving a refund."
+}
+else if (totalGrants == tuition) {
+    extraMessage = "You don't owe anything."
+}
+else {
+    extraMessage = "You owe money. Pay up"
+}
+
+document.getElementById("mathConditionOutput").innerHTML = extraMessage;
+
+
+
+
+
 
 // ==========================
 // Part 4: Conditionals
@@ -127,3 +174,4 @@ document.getElementById("numberConversionOutput").innerHTML = combinedResults;
 //
 // 2. Display a message on the page based on the condition
 //    (append it to an existing section or create a new message)
+
