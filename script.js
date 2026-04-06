@@ -110,6 +110,21 @@ for (let i = 0; i < intCheckArray.length; i++) {
 
 document.getElementById("intConditionOutput").innerHTML = intMsg;
 
+let nanMsg = "";
+
+for (let i = 0; i < intCheckArray.length; i++) {
+    let convertedValue = Number(intCheckArray[i]);
+    if (Number.isNaN(convertedValue)) {
+        nanMsg += "The value " + "\"" + intCheckArray[i] + "\"" + " is a NaN."
+    }
+    else {
+        nanMsg += "The value " + "\"" + intCheckArray[i] + "\"" + " is not a NaN."
+    }
+    nanMsg += "<br>";
+}
+
+document.getElementById("nanConditionOutput").innerHTML = nanMsg;
+
 // ==========================
 // Part 3: Math & Formatting
 // ==========================
